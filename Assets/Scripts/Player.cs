@@ -20,25 +20,30 @@ public class Player : MonoBehaviour
     void Awake()
     {
         rb  = GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        xMovement  = Input.GetAxis("Horizontal");
-        zMovement  = Input.GetAxis("Vertical");
-        xRotation += Input.GetAxis("Mouse Y") * cameraSens;
-        yRotation += Input.GetAxis("Mouse X") * cameraSens;
+        if (GameManager.instance.CurrentState == GameStatus.play)
+        {
+            xMovement = Input.GetAxis("Horizontal");
+            zMovement = Input.GetAxis("Vertical");
+            xRotation += Input.GetAxis("Mouse Y") * cameraSens;
+            yRotation += Input.GetAxis("Mouse X") * cameraSens;
 
-        xRotation = Mathf.Clamp(xRotation, minXCamera, maxXCamera);
-        transform.localEulerAngles = new Vector3(-xRotation, yRotation, 0);
+            xRotation = Mathf.Clamp(xRotation, minXCamera, maxXCamera);
+            transform.localEulerAngles = new Vector3(-xRotation, yRotation, 0);
 
-        direction = (xMovement * transform.right + zMovement * transform.forward).normalized;
+            direction = (xMovement * transform.right + zMovement * transform.forward).normalized;
+        }
     }
 
     void FixedUpdate()
     {
-        rb.velocity = direction * speed * Time.deltaTime;
+        if (GameManager.instance.CurrentState == GameStatus.play)
+        {
+            rb.velocity = direction * speed * Time.deltaTime;
+        }
     }
 }
