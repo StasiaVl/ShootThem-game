@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+    private float lifes;
 
     private Rigidbody rb;
     private float xMovement;
@@ -16,10 +17,35 @@ public class Player : MonoBehaviour
     private float maxXCamera =  45;
     private float cameraSens =  5;
     private Vector3 direction;
+    private Vector3 startingPos;
+    private Quaternion startingRot;
 
-    void Awake()
+    public static Player instance = null;
+    private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+
         rb  = GetComponent<Rigidbody>();
+        startingPos = transform.position;
+        startingRot = transform.rotation;
+    }
+
+    public void Restart()
+    {
+        transform.position = startingPos;
+        transform.rotation = startingRot;
+        lifes = 10;
+        rb.velocity = Vector3.zero;
+        xRotation = 0;
+        yRotation = 0;
     }
 
     // Update is called once per frame

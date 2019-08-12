@@ -19,9 +19,6 @@ public class GameManager : MonoBehaviour
     private Button MenuBtn;
     [SerializeField]
     private Text FinTxt;
-    [SerializeField]
-    private GameObject Player;
-    private Vector3 startingPos;
 
     private GameStatus currentState = GameStatus.menu;
     public GameStatus CurrentState { get { return currentState; } }
@@ -43,7 +40,6 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        startingPos = Player.transform.position;
         ToMenu();
     }
 
@@ -82,8 +78,8 @@ public class GameManager : MonoBehaviour
     {
         currentState = GameStatus.menu;
         Time.timeScale = 1;
-        Player.transform.position = startingPos;
         Cursor.lockState = CursorLockMode.None;
+        Player.instance.Restart();
         PlayBtn.gameObject.SetActive(true);
         QuitBtn.gameObject.SetActive(true);
         ResumeBtn.gameObject.SetActive(false);
