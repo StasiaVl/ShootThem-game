@@ -1,12 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [SerializeField]
     private float speed;
-    private float lifes;
+
+    [SerializeField]
+    private Slider health;
+    [SerializeField]
+    private Text healthTxt;
+    private float lifes = 10;
+    private float currentHealth;
 
     private Rigidbody rb;
     private float xMovement;
@@ -36,13 +41,17 @@ public class Player : MonoBehaviour
         rb  = GetComponent<Rigidbody>();
         startingPos = transform.position;
         startingRot = transform.rotation;
+
     }
 
     public void Restart()
     {
         transform.position = startingPos;
         transform.rotation = startingRot;
-        lifes = 10;
+        currentHealth = lifes;
+        health.maxValue = lifes;
+        health.value = currentHealth;
+        healthTxt.text = "Health: " + currentHealth + '\\' + lifes;
         rb.velocity = Vector3.zero;
         xRotation = 0;
         yRotation = 0;
@@ -70,6 +79,17 @@ public class Player : MonoBehaviour
         if (GameManager.instance.CurrentState == GameStatus.play)
         {
             rb.velocity = direction * speed * Time.deltaTime;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "bullet")
+        {
+            health.value = --currentHealth;
+            healthTxt.text = "Health: " + currentHealth + '\\' + lifes;
+            if (currentHealth == 0)
+                GameManager.instance.GameOver(false);
         }
     }
 }

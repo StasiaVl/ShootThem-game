@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
     private Button MenuBtn;
     [SerializeField]
     private Text FinTxt;
+    [SerializeField]
+    private Image MenuImage;
+    [SerializeField]
+    private GameObject enemyController;
+
+    private GameObject evil;
 
     private GameStatus currentState = GameStatus.menu;
     public GameStatus CurrentState { get { return currentState; } }
@@ -54,10 +60,13 @@ public class GameManager : MonoBehaviour
 
     public void BeginGame()
     {
+        Time.timeScale = 1;
         currentState = GameStatus.play;
         Cursor.lockState = CursorLockMode.Locked;
         PlayBtn.gameObject.SetActive(false);
         QuitBtn.gameObject.SetActive(false);
+        MenuImage.gameObject.SetActive(false);
+        evil = Instantiate(enemyController) as GameObject;
     }
 
     public void GameOver(bool win)
@@ -68,7 +77,7 @@ public class GameManager : MonoBehaviour
             FinTxt.text = "Congratulations!\nYou win!";
         } else
         {
-            FinTxt.text = "Congratulations!\nYou win!";
+            FinTxt.text = "Fail!\nYou lose!";
         }
         currentState = GameStatus.gameover;
         MenuBtn.gameObject.SetActive(true);
@@ -77,14 +86,16 @@ public class GameManager : MonoBehaviour
     public void ToMenu()
     {
         currentState = GameStatus.menu;
-        Time.timeScale = 1;
+        Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         Player.instance.Restart();
         PlayBtn.gameObject.SetActive(true);
         QuitBtn.gameObject.SetActive(true);
         ResumeBtn.gameObject.SetActive(false);
         MenuBtn.gameObject.SetActive(false);
+        MenuImage.gameObject.SetActive(true);
         FinTxt.text = "";
+        Destroy(evil);
     }
 
     public void Pause()
@@ -95,6 +106,7 @@ public class GameManager : MonoBehaviour
             currentState = GameStatus.play;
             ResumeBtn.gameObject.SetActive(false);
             MenuBtn.gameObject.SetActive(false);
+            MenuImage.gameObject.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
         }
         else
@@ -103,6 +115,7 @@ public class GameManager : MonoBehaviour
             currentState = GameStatus.pause;
             ResumeBtn.gameObject.SetActive(true);
             MenuBtn.gameObject.SetActive(true);
+            MenuImage.gameObject.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
         }
     }
