@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Image MenuImage;
     [SerializeField]
+    private GameObject Aim;
+    [SerializeField]
     private GameObject enemyController;
 
     private GameObject evil;
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
         PlayBtn.gameObject.SetActive(false);
         QuitBtn.gameObject.SetActive(false);
         MenuImage.gameObject.SetActive(false);
+        Aim.gameObject.SetActive(true);
         evil = Instantiate(enemyController) as GameObject;
     }
 
@@ -81,6 +84,7 @@ public class GameManager : MonoBehaviour
         }
         currentState = GameStatus.gameover;
         MenuBtn.gameObject.SetActive(true);
+        Aim.gameObject.SetActive(false);
     }
 
     public void ToMenu()
@@ -94,6 +98,7 @@ public class GameManager : MonoBehaviour
         ResumeBtn.gameObject.SetActive(false);
         MenuBtn.gameObject.SetActive(false);
         MenuImage.gameObject.SetActive(true);
+        Aim.gameObject.SetActive(false);
         FinTxt.text = "";
         Destroy(evil);
     }
@@ -107,6 +112,7 @@ public class GameManager : MonoBehaviour
             ResumeBtn.gameObject.SetActive(false);
             MenuBtn.gameObject.SetActive(false);
             MenuImage.gameObject.SetActive(false);
+            Aim.gameObject.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
         }
         else
@@ -116,6 +122,7 @@ public class GameManager : MonoBehaviour
             ResumeBtn.gameObject.SetActive(true);
             MenuBtn.gameObject.SetActive(true);
             MenuImage.gameObject.SetActive(true);
+            Aim.gameObject.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
         }
     }

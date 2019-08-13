@@ -1492,7 +1492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1060718497
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1978,10 +1978,10 @@ RectTransform:
   m_Father: {fileID: 384438553}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -301.8873, y: 130.6245}
-  m_SizeDelta: {x: 160, y: 31.6}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 98.11267, y: -27.375488}
+  m_SizeDelta: {x: 160, y: 31.600006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1530720901
 MonoBehaviour:
@@ -2492,6 +2492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 300
+  bullet: {fileID: 7846544072292709101, guid: 873b2734dfe135b49876c6342025b959, type: 3}
   health: {fileID: 212236454}
   healthTxt: {fileID: 1530720901}
 --- !u!54 &2034667180

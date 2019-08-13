@@ -5,6 +5,10 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private GameObject bullet;
+    private float bulletSpeed = 60;
+    private GameObject currentBullet;
 
     [SerializeField]
     private Slider health;
@@ -41,7 +45,6 @@ public class Player : MonoBehaviour
         rb  = GetComponent<Rigidbody>();
         startingPos = transform.position;
         startingRot = transform.rotation;
-
     }
 
     public void Restart()
@@ -71,6 +74,11 @@ public class Player : MonoBehaviour
             transform.localEulerAngles = new Vector3(-xRotation, yRotation, 0);
 
             direction = (xMovement * transform.right + zMovement * transform.forward).normalized;
+
+            if(Input.GetMouseButtonDown(0))
+            {
+                Shoot();
+            }
         }
     }
 
@@ -90,6 +98,20 @@ public class Player : MonoBehaviour
             healthTxt.text = "Health: " + currentHealth + '\\' + lifes;
             if (currentHealth == 0)
                 GameManager.instance.GameOver(false);
+        }
+    }
+
+    private void Shoot()
+    {
+        if (currentBullet == null)
+        {
+            currentBullet = Instantiate(bullet) as GameObject;
+            currentBullet.transform.parent = transform;
+            currentBullet.transform.localPosition = Vector3.forward + Vector3.up;
+            currentBullet.transform.parent = null;
+            Destroy(currentBullet, 1f);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            currentBullet.GetComponent<Rigidbody>().AddForce(ray.direction * bulletSpeed + Vector3.up, ForceMode.Impulse);
         }
     }
 }
