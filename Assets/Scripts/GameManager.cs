@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour
     private GameObject Aim;
     [SerializeField]
     private GameObject enemyController;
-
-    private GameObject evil;
+    
+    private GameObject evil; //current EnemyController
 
     private GameStatus currentState = GameStatus.menu;
     public GameStatus CurrentState { get { return currentState; } }
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (Input.GetKeyDown("space"))
+       if (Input.GetKeyDown("space") && (CurrentState == GameStatus.play || CurrentState == GameStatus.pause))
        {
            Pause();
        }
@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         Player.instance.Restart();
+
         PlayBtn.gameObject.SetActive(true);
         QuitBtn.gameObject.SetActive(true);
         ResumeBtn.gameObject.SetActive(false);
@@ -108,6 +109,7 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1;
             currentState = GameStatus.play;
+
             ResumeBtn.gameObject.SetActive(false);
             MenuBtn.gameObject.SetActive(false);
             MenuImage.gameObject.SetActive(false);
@@ -118,6 +120,7 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0;
             currentState = GameStatus.pause;
+
             ResumeBtn.gameObject.SetActive(true);
             MenuBtn.gameObject.SetActive(true);
             MenuImage.gameObject.SetActive(true);

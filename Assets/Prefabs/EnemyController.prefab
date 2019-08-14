@@ -47,8 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 6108153873086473106, guid: 803bc2bd14a485544bfa0a09e6d6c863, type: 3}
-  player: {fileID: 0}
-  min: {x: -22, y: 0, z: 2}
+  min: {x: -22, y: 0, z: 3}
   max: {x: 22, y: 0, z: 73}
 --- !u!1001 &7053650059741261606
 PrefabInstance:

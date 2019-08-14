@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98e8983c4097294da0adf8ce5f8e73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootSound: {fileID: 8300000, guid: 736a6ee94d8a94aef925851d18125a0c, type: 3}
+  bullet: {fileID: 7846544072292709101, guid: 873b2734dfe135b49876c6342025b959, type: 3}
   health: 3
   moving: 1
 --- !u!136 &6108153873086473105
