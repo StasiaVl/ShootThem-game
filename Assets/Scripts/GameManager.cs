@@ -1,6 +1,5 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public enum GameStatus
 {

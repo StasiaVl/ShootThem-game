@@ -11,6 +11,12 @@ public class Player : MonoBehaviour
     private GameObject currentBullet;
 
     [SerializeField]
+    private AudioSource walkSound;
+    [SerializeField]
+    private AudioSource shootSound;
+    [SerializeField]
+    private AudioSource hitSound;
+    [SerializeField]
     private Slider health;
     [SerializeField]
     private Text healthTxt;
@@ -75,10 +81,18 @@ public class Player : MonoBehaviour
 
             direction = (xMovement * transform.right + zMovement * transform.forward).normalized;
 
+
             if(Input.GetMouseButtonDown(0))
             {
                 Shoot();
             }
+        }
+        if (rb.velocity != Vector3.zero && !walkSound.isPlaying)
+        {
+            walkSound.Play();
+        } else if (rb.velocity == Vector3.zero && walkSound.isPlaying)
+        {
+            walkSound.Stop();
         }
     }
 
@@ -98,6 +112,7 @@ public class Player : MonoBehaviour
             healthTxt.text = "Health: " + currentHealth + '\\' + lifes;
             if (currentHealth == 0)
                 GameManager.instance.GameOver(false);
+            hitSound.Play();
         }
     }
 
@@ -105,6 +120,7 @@ public class Player : MonoBehaviour
     {
         if (currentBullet == null)
         {
+            shootSound.Play();
             currentBullet = Instantiate(bullet) as GameObject;
             currentBullet.transform.parent = transform;
             currentBullet.transform.localPosition = Vector3.forward + Vector3.up;

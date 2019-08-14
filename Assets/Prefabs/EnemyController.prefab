@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 6108153873086473106, guid: 803bc2bd14a485544bfa0a09e6d6c863, type: 3}
+  player: {fileID: 0}
   min: {x: -22, y: 0, z: 2}
   max: {x: 22, y: 0, z: 73}
 --- !u!1001 &7053650059741261606
@@ -120,6 +121,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108153873086473107, guid: 803bc2bd14a485544bfa0a09e6d6c863,
+        type: 3}
+      propertyPath: moving
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6173778113778963730, guid: 803bc2bd14a485544bfa0a09e6d6c863,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6173778113778963730, guid: 803bc2bd14a485544bfa0a09e6d6c863,
+        type: 3}
+      propertyPath: Loop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6108153872161448691, guid: 803bc2bd14a485544bfa0a09e6d6c863,
         type: 3}
@@ -200,6 +216,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108153873086473107, guid: 803bc2bd14a485544bfa0a09e6d6c863,
+        type: 3}
+      propertyPath: moving
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6173778113778963730, guid: 803bc2bd14a485544bfa0a09e6d6c863,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6173778113778963730, guid: 803bc2bd14a485544bfa0a09e6d6c863,
+        type: 3}
+      propertyPath: Loop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6108153872161448691, guid: 803bc2bd14a485544bfa0a09e6d6c863,
         type: 3}
@@ -285,6 +316,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108153873086473107, guid: 803bc2bd14a485544bfa0a09e6d6c863,
+        type: 3}
+      propertyPath: moving
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6173778113778963730, guid: 803bc2bd14a485544bfa0a09e6d6c863,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6173778113778963730, guid: 803bc2bd14a485544bfa0a09e6d6c863,
+        type: 3}
+      propertyPath: Loop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6108153872161448691, guid: 803bc2bd14a485544bfa0a09e6d6c863,
         type: 3}
